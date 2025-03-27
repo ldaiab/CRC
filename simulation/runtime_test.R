@@ -49,7 +49,8 @@ n <- 100
   output2<-foreach(m = seq(1,size,by=1),.combine = 'rbind') %dopar% {
     X<- mvrnorm(n, mu, Sigma)
     y <-    0.8*c(X%*%beta) + rnorm(n,0,1)
-    C <-  rnorm(n,1.4,0.3)+ rnorm(n,1,1)  # censoring variable=0.45
+    C <-  rnorm(n,1.4,0.3)+ rnorm(n,1,1)  # censoring variable=0.10
+    #C <-  rnorm(n,0,0.3)+ rnorm(n,1,1)  # censoring variable=0.30
     delta <-(y<=C)
     Cr <- 1-mean(delta) # censoring rates
     Y<- pmin(y,C) # observed variable
