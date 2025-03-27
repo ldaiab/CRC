@@ -41,7 +41,7 @@ mu <- rep(0, 3)
 B <- 500
 size <- 1000
 
-#################### paralell ######################
+#################### parallel ######################
 start_time<-Sys.time()
 n <- 100
   registerDoParallel(20)
@@ -58,7 +58,8 @@ n <- 100
     time.cox <- system.time({cph_test(X=as.matrix(X),z=array(Y),d=array(delta))})[3]
     ########### KLR ###########
     time.KLR <-system.time({wild_bootstrap_test_logrank_covariates(
-      X=as.matrix(X), z=array(Y),d=array(delta),kernels_x='gau',kernel_z='gau',seed=as.integer(1))})[3]
+      X=as.matrix(X), z=array(Y),d=array(delta),kernels_x='gau',kernel_z='gau',seed=as.integer(1),num_bootstrap_statistics=as.integer(B))})[3]
+    ########### IPCW ###########
     ########### IPCW ###########
     time.distance <- system.time({ipcw.dcov.test(cbind(Y,delta), X,B=B)})[3]
     ########### proposed tests ###########
