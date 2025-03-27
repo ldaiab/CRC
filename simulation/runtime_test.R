@@ -53,12 +53,6 @@ n <- 100
     delta <-(y<=C)
     Cr <- 1-mean(delta) # censoring rates
     Y<- pmin(y,C) # observed variable
-    
-    ############## generate censoring ############
-    delta <-(y<=C)
-    Cr <- 1-mean(delta) # censoring rates
-    Y<- pmin(y,C) # observed variable
-    
     ########### cox PH likelihood ratio test #####
     time.cox <- system.time({cph_test(X=as.matrix(X),z=array(Y),d=array(delta))})[3]
     ########### KLR ###########
