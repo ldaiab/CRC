@@ -1,4 +1,5 @@
 cd output/;module load r/4.4.0;R
+#Y, X, delta, come from "comb_protein.r"
 T0=10^(seq(4,7,length.out=10))
 Tcost=matrix(NA, 10,5)
 for(ii in 1:10)
