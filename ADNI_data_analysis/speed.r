@@ -1,4 +1,28 @@
 cd output/;module load r/4.4.0;R
+T0=10^(seq(4,7,length.out=10))
+Tcost=matrix(NA, 10,5)
+for(ii in 1:10)
+{
+print(10-ii)
+temp=system.time(permu_pvalue_fast(Y, X, delta,B=T0[ii]))
+Tcost[ii,1]=temp[3]
+print(10-ii)
+temp=system.time(permu_pvalue_fast(Y, X, delta,B=T0[ii],Fw=function(x){punif(x,min=-1,max=1)}))
+Tcost[ii,2]=temp[3]
+print(10-ii)
+temp=system.time(ipcw.dcov.test(cbind(Y,delta), X,B=T0[ii]))
+Tcost[ii,3]=temp[3]
+print(10-ii)
+temp=system.time(wild_bootstrap_test_logrank_covariates(array(as.matrix(X),c(length(Y),1)),array(Y),array(delta),'gau','gau', 
+num_bootstrap_statistics=as.integer(T0[ii])))
+Tcost[ii,4]=temp[3]
+print(10-ii)
+temp=system.time(cph_test(X=as.matrix(X),z=array(Y),d=array(delta)))
+Tcost[ii,5]=temp[3]
+}
+write.csv(Tcost,file='timeT.csv',quote=F)
+
+### make a time plot ###
 Tcost=read.csv('timeT.csv');
 pdf('timecost.pdf')
 # Plot with custom colors/shapes and x-axis specification
