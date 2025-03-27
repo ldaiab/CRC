@@ -1,4 +1,4 @@
-# A Model-Free Rank-Based Correlation Coefficient (CRC) for Right-Censored Data
+# A Censored Rank-Based Correlation Coefficient (CRC) for survival data
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)  <!-- Replace with your actual license -->
 [![Status](https://img.shields.io/badge/status-stable-brightgreen)](https://shields.io/) <!-- Or "development", "alpha", etc. -->
