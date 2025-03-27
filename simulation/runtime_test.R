@@ -60,7 +60,6 @@ n <- 100
     time.KLR <-system.time({wild_bootstrap_test_logrank_covariates(
       X=as.matrix(X), z=array(Y),d=array(delta),kernels_x='gau',kernel_z='gau',seed=as.integer(1),num_bootstrap_statistics=as.integer(B))})[3]
     ########### IPCW ###########
-    ########### IPCW ###########
     time.distance <- system.time({ipcw.dcov.test(cbind(Y,delta), X,B=B)})[3]
     ########### proposed tests ###########
     Y<- (Y-mean(Y))/sd(Y)# standardization
